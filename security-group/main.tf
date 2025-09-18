@@ -13,8 +13,8 @@ data "terraform_remote_state" "vpc" {
 }
 
 resource "aws_security_group" "this" {
-  name        = "allow-ssh"
-  description = "Allow SSH inbound traffic"
+  name        = var.sg_name
+  description = var.description
   vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id  # <-- uses output
 
   ingress {
